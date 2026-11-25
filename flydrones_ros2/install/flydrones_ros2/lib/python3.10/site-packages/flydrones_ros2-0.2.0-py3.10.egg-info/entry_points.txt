@@ -1,0 +1,3 @@
+[console_scripts]
+flydrones_node = flydrones_ros2.node:main
+

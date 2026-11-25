@@ -1,20 +1,119 @@
-# Real MaleCNS v1.0 brain. Build it first:
-#   flydrones download malecns && flydrones build-brain --out data/malecns_brain.npz
-#   flydrones calibrate --brain data/malecns_brain.npz --out readout_malecns.json
+# Configuration MaleCNS - Types cellulaires réels du connectome
+# Les noms de types cellulaires proviennent de l'exploration du connectome MaleCNS v1.0
+# NOTE : Les côtés L/R ne sont pas renseignés dans MaleCNS pour la plupart des types,
+# donc on utilise side: null pour prendre tous les neurones du type.
+
 brain:
-  source: data/malecns_brain.npz
+  source: malecns
+  seed: 0
   lif:
+    v_rest: -52.0
+    v_reset: -52.0
+    v_th: -45.0
+    tau_m: 20.0
+    tau_syn: 5.0
+    t_ref: 2.2
+    delay: 1.8
+    w_syn: 0.275
+    poisson_factor: 250.0
     dt: 0.5
     noise_mv: 0.0
-  bias:                   # tonic flight drive; re-tune with `flydrones inspect` if DNg02 is silent or saturated
-    DNg02_L: 8.0
-    DNg02_R: 8.0
-  record_neurons: 600
+  bias:
+    DNg02_a: 9.0
+    DNg02_b: 9.0
+    DNg02_c: 9.0
+    DNg02_d: 9.0
+    DNg02_e: 9.0
+    DNg02_f: 9.0
+    DNg02_g: 9.0
+  record_neurons: 400
+
 inputs:
-  # MaleCNS has no dedicated "haltere" type name match by default; add the VNC haltere
-  # afferent types you find with `flydrones inspect` or neuPrint, e.g. types: ["^haltere", "^hDA"]
-  HAL_L: {types: ["(?i)haltere"], side: L, feature: yaw_neg, max_hz: 50}
-  HAL_R: {types: ["(?i)haltere"], side: R, feature: yaw_pos, max_hz: 50}
+  # Photorecepteurs (R1-R6) - brightness
+  R16_L:   {types: ["^R1-R6$"], side: null, feature: brightness, eye: L, max_hz: 40}
+  R16_R:   {types: ["^R1-R6$"], side: null, feature: brightness, eye: R, max_hz: 40}
+  
+  # T4/T5 - motion direction
+  T4a_L:   {types: ["^T4a$"], side: null, feature: ftb,  eye: L, max_hz: 120}
+  T4a_R:   {types: ["^T4a$"], side: null, feature: ftb,  eye: R, max_hz: 120}
+  T4b_L:   {types: ["^T4b$"], side: null, feature: btf,  eye: L, max_hz: 120}
+  T4b_R:   {types: ["^T4b$"], side: null, feature: btf,  eye: R, max_hz: 120}
+  T4c_L:   {types: ["^T4c$"], side: null, feature: up,   eye: L, max_hz: 120}
+  T4c_R:   {types: ["^T4c$"], side: null, feature: up,   eye: R, max_hz: 120}
+  T4d_L:   {types: ["^T4d$"], side: null, feature: down, eye: L, max_hz: 120}
+  T4d_R:   {types: ["^T4d$"], side: null, feature: down, eye: R, max_hz: 120}
+  
+  # Looming
+  LPLC2_L: {types: ["^LPLC2$"], side: null, feature: loom, eye: L, max_hz: 200}
+  LPLC2_R: {types: ["^LPLC2$"], side: null, feature: loom, eye: R, max_hz: 200}
+  LC4_L:   {types: ["^LC4$"],   side: null, feature: loom_speed, eye: L, max_hz: 150}
+  LC4_R:   {types: ["^LC4$"],   side: null, feature: loom_speed, eye: R, max_hz: 150}
+  
+  # Haltere (yaw rate) - pas trouvé dans MaleCNS, on laisse vide
+  HAL_L:   {types: ["haltere"], side: null, feature: yaw_neg, max_hz: 50}
+  HAL_R:   {types: ["haltere"], side: null, feature: yaw_pos, max_hz: 50}
+
+imu:
+  yaw_saturation_dps: 150
+
+outputs:
+  DNg02_L: {types: ["^DNg02"], side: null, note: "wing-stroke amplitude"}
+  DNg02_R: {types: ["^DNg02"], side: null, note: "wing-stroke amplitude"}
+  DNp03_L: {types: ["^DNp03$"], side: null, note: "flight saccades"}
+  DNp03_R: {types: ["^DNp03$"], side: null, note: "flight saccades"}
+  DNp01_L: {types: ["^DNp01$", "^GFC"], side: null, note: "giant fiber escape"}
+  DNp01_R: {types: ["^DNp01$", "^GFC"], side: null, note: "giant fiber escape"}
+
+vision:
+  width: 96
+  height: 72
+  grid: [6, 8]
+  flow_gain: 1.2
+  loom_gain: 8.0
+  loom_floor: 0.04
+  blur: 1
+
 decoder:
-  readout_file: readout_malecns.json
-  settle_s: 2.0
+  window_ms: 50
+  smoothing: 0.2
+  settle_s: 1.5
+  deadzone: 0.04
+  readout_file: null
+  axes:
+    throttle:
+      gain: 0.022
+      terms: {DNg02_L: 0.5, DNg02_R: 0.5}
+    yaw:
+      gain: 0.05
+      terms: {DNg02_R: 1.0, DNg02_L: -1.0}
+    forward:
+      gain: 0.0
+      terms: {}
+    lateral:
+      gain: 0.0
+      terms: {}
+  cruise: 0.0
+  brake_terms: {DNp03: 0.02, DNp01: 0.03, GFC1: 0.01, GFC2: 0.01, GFC3: 0.01, GFC4: 0.01}
+  escape:
+    terms: [DNp01, GFC1, GFC2, GFC3, GFC4]
+    threshold_hz: 20
+    mode: climb
+    duration_s: 0.7
+    strength: 0.8
+
+safety:
+  max_throttle: 0.6
+  max_yaw: 0.6
+  max_forward: 0.4
+  max_lateral: 0.4
+  slew_per_s: 2.5
+  min_alt_m: 0.3
+  max_alt_m: 2.2
+  geofence_radius_m: 3.0
+  brain_timeout_s: 0.5
+  min_battery_pct: 20
+  max_flight_s: 180
+
+control:
+  hz: 20
+  takeoff: true

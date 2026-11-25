@@ -41,8 +41,8 @@ WorldInfo {
   title "Crazyflie Apartment"
 }
 Viewpoint {
-  orientation -0.2069634151755047 0.17139042951652655 0.9632193236480631 1.794980546924951
-  position -4.653637353569035 -3.8255063541330636 0.8485253366513015
+  orientation -0.07130091818314706 0.08923787967260836 0.9934549712482077 1.3547086287776786
+  position -5.499660450725136 -3.3496096826688824 0.09791212091541204
   exposure 0.5
   follow "Crazyflie"
 }
@@ -527,5 +527,5 @@ LandscapePainting {
 }
 Crazyflie {
   translation -5 -2 0.015
-  controller "crazyflie_py_wallfollowing"
+  controller "crazyflie_flydrones_rl"
 }

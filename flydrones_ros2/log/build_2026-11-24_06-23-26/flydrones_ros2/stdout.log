@@ -1,0 +1,37 @@
+running egg_info
+creating build/flydrones_ros2/flydrones_ros2.egg-info
+writing build/flydrones_ros2/flydrones_ros2.egg-info/PKG-INFO
+writing dependency_links to build/flydrones_ros2/flydrones_ros2.egg-info/dependency_links.txt
+writing entry points to build/flydrones_ros2/flydrones_ros2.egg-info/entry_points.txt
+writing requirements to build/flydrones_ros2/flydrones_ros2.egg-info/requires.txt
+writing top-level names to build/flydrones_ros2/flydrones_ros2.egg-info/top_level.txt
+writing manifest file 'build/flydrones_ros2/flydrones_ros2.egg-info/SOURCES.txt'
+reading manifest file 'build/flydrones_ros2/flydrones_ros2.egg-info/SOURCES.txt'
+writing manifest file 'build/flydrones_ros2/flydrones_ros2.egg-info/SOURCES.txt'
+running build
+running build_py
+creating /home/matheo/Desktop/crazyflie/flydrones_ros2/build/flydrones_ros2/build
+creating /home/matheo/Desktop/crazyflie/flydrones_ros2/build/flydrones_ros2/build/lib
+creating /home/matheo/Desktop/crazyflie/flydrones_ros2/build/flydrones_ros2/build/lib/flydrones_ros2
+copying src/flydrones_ros2/node.py -> /home/matheo/Desktop/crazyflie/flydrones_ros2/build/flydrones_ros2/build/lib/flydrones_ros2
+copying src/flydrones_ros2/__init__.py -> /home/matheo/Desktop/crazyflie/flydrones_ros2/build/flydrones_ros2/build/lib/flydrones_ros2
+running install
+running install_lib
+creating /home/matheo/Desktop/crazyflie/flydrones_ros2/install/flydrones_ros2/lib/python3.10/site-packages/flydrones_ros2
+copying /home/matheo/Desktop/crazyflie/flydrones_ros2/build/flydrones_ros2/build/lib/flydrones_ros2/node.py -> /home/matheo/Desktop/crazyflie/flydrones_ros2/install/flydrones_ros2/lib/python3.10/site-packages/flydrones_ros2
+copying /home/matheo/Desktop/crazyflie/flydrones_ros2/build/flydrones_ros2/build/lib/flydrones_ros2/__init__.py -> /home/matheo/Desktop/crazyflie/flydrones_ros2/install/flydrones_ros2/lib/python3.10/site-packages/flydrones_ros2
+byte-compiling /home/matheo/Desktop/crazyflie/flydrones_ros2/install/flydrones_ros2/lib/python3.10/site-packages/flydrones_ros2/node.py to node.cpython-310.pyc
+byte-compiling /home/matheo/Desktop/crazyflie/flydrones_ros2/install/flydrones_ros2/lib/python3.10/site-packages/flydrones_ros2/__init__.py to __init__.cpython-310.pyc
+running install_data
+creating /home/matheo/Desktop/crazyflie/flydrones_ros2/install/flydrones_ros2/share/ament_index
+creating /home/matheo/Desktop/crazyflie/flydrones_ros2/install/flydrones_ros2/share/ament_index/resource_index
+creating /home/matheo/Desktop/crazyflie/flydrones_ros2/install/flydrones_ros2/share/ament_index/resource_index/packages
+copying resource/flydrones_ros2 -> /home/matheo/Desktop/crazyflie/flydrones_ros2/install/flydrones_ros2/share/ament_index/resource_index/packages
+copying package.xml -> /home/matheo/Desktop/crazyflie/flydrones_ros2/install/flydrones_ros2/share/flydrones_ros2
+creating /home/matheo/Desktop/crazyflie/flydrones_ros2/install/flydrones_ros2/share/flydrones_ros2/launch
+creating /home/matheo/Desktop/crazyflie/flydrones_ros2/install/flydrones_ros2/share/flydrones_ros2/config
+running install_egg_info
+Copying build/flydrones_ros2/flydrones_ros2.egg-info to /home/matheo/Desktop/crazyflie/flydrones_ros2/install/flydrones_ros2/lib/python3.10/site-packages/flydrones_ros2-0.2.0-py3.10.egg-info
+running install_scripts
+Installing flydrones_node script to /home/matheo/Desktop/crazyflie/flydrones_ros2/install/flydrones_ros2/bin
+writing list of installed files to '/home/matheo/Desktop/crazyflie/flydrones_ros2/build/flydrones_ros2/install.log'

@@ -1,0 +1,114 @@
+#VRML_SIM R2025a utf8
+
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/robots/bitcraze/crazyflie/protos/Crazyflie.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/backgrounds/protos/TexturedBackground.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/floors/protos/Floor.proto"
+
+WorldInfo {
+  info [
+    "Crazyflie Maze - Apprentissage RL synaptique"
+    "Le drone doit naviguer dans le labyrinthe sans crasher"
+  ]
+  title "Crazyflie Maze RL"
+}
+Viewpoint {
+  orientation -0.10311089632172073 0.641740519713268 0.7599587149430397 0.6949228976889259
+  position -3.0 -3.0 2.0
+  follow "Crazyflie"
+}
+TexturedBackground {}
+TexturedBackgroundLight {}
+Floor {}
+
+# Murs du labyrinthe (boîtes solides)
+# Mur nord
+Transform {
+  translation 0 3 0.75
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.4 0.4 0.4 }
+      geometry Box { size 6 0.2 1.5 }
+    }
+  ]
+}
+# Mur sud
+Transform {
+  translation 0 -3 0.75
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.4 0.4 0.4 }
+      geometry Box { size 6 0.2 1.5 }
+    }
+  ]
+}
+# Mur ouest
+Transform {
+  translation -3 0 0.75
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.4 0.4 0.4 }
+      geometry Box { size 0.2 6 1.5 }
+    }
+  ]
+}
+# Mur est
+Transform {
+  translation 3 0 0.75
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.4 0.4 0.4 }
+      geometry Box { size 0.2 6 1.5 }
+    }
+  ]
+}
+# Obstacles internes (labyrinthe)
+Transform {
+  translation -1.5 1 0.75
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.6 0.2 0.2 }
+      geometry Box { size 1 1 1.5 }
+    }
+  ]
+}
+Transform {
+  translation 1.5 -1 0.75
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.6 0.2 0.2 }
+      geometry Box { size 1 1 1.5 }
+    }
+  ]
+}
+Transform {
+  translation -1 -1.5 0.75
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.6 0.2 0.2 }
+      geometry Box { size 1 1 1.5 }
+    }
+  ]
+}
+Transform {
+  translation 1 1.5 0.75
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.6 0.2 0.2 }
+      geometry Box { size 1 1 1.5 }
+    }
+  ]
+}
+Transform {
+  translation 0 0 0.75
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.6 0.2 0.2 }
+      geometry Box { size 0.8 0.8 1.5 }
+    }
+  ]
+}
+
+Crazyflie {
+  controller "crazyflie_flydrones_rl"
+}

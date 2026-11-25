@@ -1,0 +1,3 @@
+[console_scripts]
+flydrones = flydrones.cli:main
+

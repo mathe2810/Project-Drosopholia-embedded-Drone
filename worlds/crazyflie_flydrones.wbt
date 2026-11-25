@@ -1,0 +1,84 @@
+#VRML_SIM R2025a utf8
+
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/robots/bitcraze/crazyflie/protos/Crazyflie.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/backgrounds/protos/TexturedBackground.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/floors/protos/Floor.proto"
+
+WorldInfo {
+  info [
+    "Bitcraze's Crazyflie drone - FlyDrones with MaleCNS connectome"
+    "This simulation uses the full MaleCNS connectome for flight control."
+  ]
+  title "Crazyflie FlyDrones - MaleCNS"
+}
+Viewpoint {
+  orientation -0.10311089632172073 0.641740519713268 0.7599587149430397 0.6949228976889259
+  position -1.4079821323258273 -0.8990534316277217 1.0948735661673783
+  follow "Crazyflie"
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+Floor {
+}
+Pose {
+  translation 2 0 0.5
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.5 0.5 0.5
+      }
+      geometry Box {
+        size 0.5 4 1
+      }
+    }
+  ]
+}
+Pose {
+  translation -2 2 0.5
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.8 0.2 0.2
+      }
+      geometry Box {
+        size 1 1 1
+      }
+    }
+  ]
+}
+Pose {
+  translation 0 -2 0.3
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.2 0.8 0.2
+      }
+      geometry Box {
+        size 2 0.5 0.5
+      }
+    }
+  ]
+}
+Pose {
+  translation 3 3 0.8
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.5 0.5 0.5
+      }
+      geometry Box {
+        size 1 1 1
+      }
+    }
+  ]
+}
+Crazyflie {
+  hidden linearVelocity_0 -1.1536741652759696e-17 5.671301186999605e-18 2.000309733185823e-06
+  hidden angularVelocity_0 6.310785659359265e-17 -4.3740984815228115e-16 1.2615876669609432e-16
+  translation 8.717103105780901e-14 1.4884720916540488e-13 0.014980123991612807
+  rotation 0.0004943965359420426 -0.00011470694481588182 0.9999998712071828 3.593423163379151e-14
+  controller "crazyflie_flydrones_rl"
+}
