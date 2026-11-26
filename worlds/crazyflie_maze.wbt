@@ -1,0 +1,106 @@
+#VRML_SIM R2025a utf8
+
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/robots/bitcraze/crazyflie/protos/Crazyflie.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/backgrounds/protos/TexturedBackground.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/floors/protos/Floor.proto"
+
+WorldInfo {
+  info [
+    "Crazyflie drone avec obstacles (labyrinthe) pour test du connectome."
+    "Le connectome prend les décisions d'évitement, le PID garde la stabilité."
+  ]
+  title "Crazyflie Maze - Connectome"
+}
+Viewpoint {
+  orientation -0.10311089632172073 0.641740519713268 0.7599587149430397 0.6949228976889259
+  position -2.5 -2.5 1.5
+  follow "Crazyflie"
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+Floor {
+}
+
+# ==================== OBSTACLES (labyrinthe simple) ====================
+# Murs solides que le drone doit éviter (ralentir / tourner)
+
+# Mur vertical gauche
+Solid {
+  translation -3.0 0 0.75
+  rotation 0 0 1 0
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.6 0.4 0.2 }
+      geometry Box { size 0.2 6.0 1.5 }
+    }
+  ]
+}
+
+# Mur vertical droit
+Solid {
+  translation 3.0 0 0.75
+  rotation 0 0 1 0
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.6 0.4 0.2 }
+      geometry Box { size 0.2 6.0 1.5 }
+    }
+  ]
+}
+
+# Mur du fond
+Solid {
+  translation 0 -3.0 0.75
+  rotation 0 0 1 0
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.6 0.4 0.2 }
+      geometry Box { size 6.0 0.2 1.5 }
+    }
+  ]
+}
+
+# Obstacle central (pilier)
+Solid {
+  translation 0 0 0.75
+  rotation 0 0 1 0
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.4 0.6 0.8 }
+      geometry Box { size 0.8 0.8 1.5 }
+    }
+  ]
+}
+
+# Obstacle décalé gauche
+Solid {
+  translation -1.5 1.5 0.6
+  rotation 0 0 1 0
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.8 0.4 0.4 }
+      geometry Box { size 0.6 0.6 1.2 }
+    }
+  ]
+}
+
+# Obstacle décalé droite
+Solid {
+  translation 1.5 -1.5 0.6
+  rotation 0 0 1 0
+  children [
+    Shape {
+      appearance PBRAppearance { baseColor 0.8 0.4 0.4 }
+      geometry Box { size 0.6 0.6 1.2 }
+    }
+  ]
+}
+
+# ==================== DRONE ====================
+Crazyflie {
+  translation -5 -2 0.015
+  controller "crazyflie_connectome"
+}

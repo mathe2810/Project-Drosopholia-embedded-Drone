@@ -1,0 +1,13 @@
+# Dépendances pour le module de décision connectome
+numpy>=1.21.0
+PyYAML>=6.0
+cryptography>=41.0.0   # chiffrement vidéo (Fernet/AES)
+
+# Pour le backend "entraîné" (FlyDrone-SNN) - optionnel, selon matériel
+# jax>=0.4.0
+# jaxlib>=0.4.0
+# optax>=0.1.0
+
+# Pour le backend "manuel" (flydrones_lib) - optionnel
+# scipy
+# pyarrow

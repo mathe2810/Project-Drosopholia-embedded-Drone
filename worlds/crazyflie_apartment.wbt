@@ -527,5 +527,5 @@ LandscapePainting {
 }
 Crazyflie {
   translation -5 -2 0.015
-  controller "crazyflie_py_wallfollowing"
+  controller "crazyflie_connectome"
 }
