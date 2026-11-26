@@ -3,6 +3,13 @@ flydrones_lib/data/logs/
 flydrones_lib/data/malecns_v1/
 flydrones_lib/data/malecns_brain.npz
 
+# FlyDrone-SNN large data / checkpoints (connectome + trained weights)
+FlyDrone-SNN/fly-brain/data/
+FlyDrone-SNN/flydrone/ckpt/
+FlyDrone-SNN/data_ext/
+FlyDrone-SNN/.cache/
+FlyDrone-SNN/.gitattributes
+
 # Build artifacts
 build/
 install/
