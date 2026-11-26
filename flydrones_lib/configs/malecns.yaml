@@ -87,12 +87,12 @@ decoder:
       gain: 0.05
       terms: {DNg02_R: 1.0, DNg02_L: -1.0}
     forward:
-      gain: 0.0
-      terms: {}
+      gain: 0.08
+      terms: {DNg02_L: 0.5, DNg02_R: 0.5}
     lateral:
-      gain: 0.0
-      terms: {}
-  cruise: 0.0
+      gain: 0.08
+      terms: {DNg02_L: 0.5, DNg02_R: -0.5}
+  cruise: 0.15
   brake_terms: {DNp03: 0.02, DNp01: 0.03, GFC1: 0.01, GFC2: 0.01, GFC3: 0.01, GFC4: 0.01}
   escape:
     terms: [DNp01, GFC1, GFC2, GFC3, GFC4]
